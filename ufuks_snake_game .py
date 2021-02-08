@@ -1,34 +1,45 @@
-
+import pygame
 import random
 import time
-import pygame
 
-pygame.init()
 
 
 seconds = time.time()
 
+pygame.init()
+
+width = 1000
+height = 800
+
+ssnake_block = 10
+
 purple = (255, 204, 255)
-yellow = (255, 255, 102)
+yellow = (250, 250, 100)
 black = (0, 0, 0)
-red = (213, 50, 80)
+red = (210, 50, 80)
 green = (0, 255, 0)
 blue = (50, 153, 213)
 white = (255, 255, 255)
 
-width = 800
-height = 600
+ssnake_speed = 13
 
 disp = pygame.display.set_mode((width, height))
+
 pygame.display.set_caption("Ufuk's Snake Game")
 
 clock = pygame.time.Clock()
 
-ssnake_block = 10
-ssnake_speed = 15
 
-font_style = pygame.font.SysFont("bahnschrift", 25)
-score_font = pygame.font.SysFont("comicsansms", 35)
+score_font = pygame.font.SysFont("copperplategothiclight", 35)
+font_style = pygame.font.SysFont("cambodian", 30)
+
+
+
+
+def snake(ssnake_block, ssnake_list):
+    for x in ssnake_list:
+        pygame.draw.rect(disp, purple, [x[0], x[1], ssnake_block, ssnake_block])
+
 
 
 
@@ -37,14 +48,14 @@ def Your_score(score):
     disp.blit(value, [0, 0])
 
 
-def snake(ssnake_block, ssnake_list):
-    for x in ssnake_list:
-        pygame.draw.rect(disp, purple, [x[0], x[1], ssnake_block, ssnake_block])
 
 
 def message(msg, colour):
     mesgg = font_style.render(msg, True, colour)
     disp.blit(mesgg, [width / 6, height / 3])
+
+
+
 
 def gameLoop():
     game_ovr = False
@@ -66,7 +77,7 @@ def gameLoop():
 
         while game_close == True:
             disp.fill(black)
-            message("Press q to quit c to restart", red)
+            message("Press q to quit r to restart", red)
             Your_score(Length_of_ssnake - 1)
             pygame.display.update()
 
@@ -75,7 +86,7 @@ def gameLoop():
                     if event.key == pygame.K_q:
                         game_ovr = True
                         game_close = False
-                    if event.key == pygame.K_c:
+                    if event.key == pygame.K_r:
                         gameLoop()
 
         for event in pygame.event.get():
