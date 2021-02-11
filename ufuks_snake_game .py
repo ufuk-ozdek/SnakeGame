@@ -2,16 +2,15 @@ import pygame
 import random
 import time
 
-
-
 seconds = time.time()
 
 pygame.init()
 
-width = 1000
-height = 800
+width = 720
+height = 600
 
-ssnake_block = 10
+ssnake_block = 12
+clock = pygame.time.Clock()
 
 purple = (255, 204, 255)
 yellow = (250, 250, 100)
@@ -21,19 +20,14 @@ green = (0, 255, 0)
 blue = (50, 153, 213)
 white = (255, 255, 255)
 
-ssnake_speed = 13
+ssnake_speed = 12
 
 disp = pygame.display.set_mode((width, height))
 
 pygame.display.set_caption("Ufuk's Snake Game")
 
-clock = pygame.time.Clock()
-
-
 score_font = pygame.font.SysFont("copperplategothiclight", 35)
 font_style = pygame.font.SysFont("cambodian", 30)
-
-
 
 
 def snake(ssnake_block, ssnake_list):
@@ -41,20 +35,14 @@ def snake(ssnake_block, ssnake_list):
         pygame.draw.rect(disp, purple, [x[0], x[1], ssnake_block, ssnake_block])
 
 
-
-
 def Your_score(score):
     value = score_font.render("Your Score: " + str(score), True, yellow)
     disp.blit(value, [0, 0])
 
 
-
-
 def message(msg, colour):
     mesgg = font_style.render(msg, True, colour)
     disp.blit(mesgg, [width / 6, height / 3])
-
-
 
 
 def gameLoop():
@@ -70,8 +58,8 @@ def gameLoop():
     ssnake_List = []
     Length_of_ssnake = 1
 
-    foodx = round(random.randrange(0, width - ssnake_block) / 10.0) * 10.0
-    foody = round(random.randrange(0, height - ssnake_block) / 10.0) * 10.0
+    foodx = round(random.randrange(0, width - ssnake_block) / 12.0) * 12.0
+    foody = round(random.randrange(0, height - ssnake_block) / 12.0) * 12.0
 
     while not game_ovr:
 
@@ -129,8 +117,8 @@ def gameLoop():
         pygame.display.update()
 
         if x1 == foodx and y1 == foody:
-            foodx = round(random.randrange(0, width - ssnake_block) / 10.0) * 10.0
-            foody = round(random.randrange(0, height - ssnake_block) / 10.0) * 10.0
+            foodx = round(random.randrange(0, width - ssnake_block) / 12.0) * 12.0
+            foody = round(random.randrange(0, height - ssnake_block) / 12.0) * 12.0
             Length_of_ssnake += 1
 
         clock.tick(ssnake_speed)
@@ -139,4 +127,5 @@ def gameLoop():
     quit()
 
 gameLoop()
+
 
